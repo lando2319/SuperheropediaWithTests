@@ -48,6 +48,15 @@
     XCTAssert(self.hero1.allies != nil);
 }
 
+-(void)testSuperheroRetrieval{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"retrieving superheros"];
+    [SuperHero retrieveSuperHerosWithCompletion:^(NSArray *superHeros) {
+        XCTAssertEqual(25, superHeros.count);
+        [expectation fulfill];
+    }];
+    [self waitForExpectationsWithTimeout:10.0 handler:nil];
+}
+
 - (void)testExample {
     // This is an example of a functional test case.
     XCTAssert(YES, @"Pass");
@@ -56,7 +65,12 @@
 - (void)testPerformanceExample {
     // This is an example of a performance test case.
     [self measureBlock:^{
-        // Put the code you want to measure the time of here.
+        XCTestExpectation *expectation = [self expectationWithDescription:@"retrieving superheros"];
+        [SuperHero retrieveSuperHerosWithCompletion:^(NSArray *superHeros) {
+            XCTAssertEqual(25, superHeros.count);
+            [expectation fulfill];
+        }];
+        [self waitForExpectationsWithTimeout:10.0 handler:nil];
     }];
 }
 
