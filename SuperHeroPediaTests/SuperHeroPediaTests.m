@@ -34,6 +34,16 @@
     [super tearDown];
 }
 
+- (void)testAllyCountStartAtZero{
+    XCTAssert(self.hero1.allies.count == 0);
+}
+
+- (void)testAddingAnAllyWorks{
+    [self.hero1 addAlly:self.hero2];
+    XCTAssertEqual(self.hero1, self.hero2.allies.firstObject);
+    XCTAssertEqual(self.hero2, self.hero1.allies.firstObject);
+}
+
 - (void)testAllyStartsNotNil{
     XCTAssert(self.hero1.allies != nil);
 }

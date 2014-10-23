@@ -54,7 +54,7 @@
 
     [allyArray addObject:ally];
 
-    self.allies = allyArray;
+    self.allies = [NSArray arrayWithArray:allyArray];
 
     [ally addAlly:self];
 }
